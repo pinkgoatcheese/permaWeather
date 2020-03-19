@@ -1,0 +1,213 @@
+* {
+    box-sizing: border-box;
+}
+.header {
+    flex-direction: row;
+    height: 15%;
+    width: 100%;
+    flex: 2;
+  }
+  
+  .header a {
+    float: left;
+    color: black;
+    text-align: left;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+  }
+  
+  .header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    width: 50%;
+  }
+  
+  .header-right {
+    float: right;
+    width: 50%;
+    text-align: right;
+    justify-content: right;
+  }
+  .flexContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+    height: 100vh;
+ }
+ .first-row-container {
+    display: flex;
+    flex-direction: row;
+    flex: 3;
+    height: 30%;
+  }
+  .locale {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #000000;
+    text-shadow: .1em .1em 0 rgba(0,0,0,0.3);
+    justify-content: right;
+    height: 100%;
+    width: 33%;
+    text-align: top;
+    text-align: center;
+}
+.search {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #000000;
+    text-shadow: .1em .1em 0 rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 33%;
+}
+.temperature {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #000000;
+    text-shadow: .1em .1em 0 rgba(0,0,0,0.3);
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    width: 33%;
+    text-align: center;
+}
+#weatherIcon.spacer-container {
+    display: flex;
+    height: 20%;
+}
+.wind-container {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #000000;
+    text-shadow: .1em .1em 0 rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+.save-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+}
+body.clearDay {
+    background-image: linear-gradient(to right top, #ff4e50, #ff713e, #ff932b, #ffb41d, #f9d423);
+}
+body.clearNight {
+    background-image: linear-gradient(to right top, #080808, #345052, #695139, #5a4418, #5a4f17);
+}
+body.fewCloudsDay {
+    background-image: linear-gradient(to right top, #f9d423, #bdcf56, #cad18e, #d9dbbc, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.fewCloudsNight {
+    background-image: linear-gradient(to right top, #080808, #3d4849, #867b6f, #aca28f, #49676d);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.scatteredCloudsDay {
+    background-image: linear-gradient(to right top, #63747c, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.scatteredCloudsNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.brokenCloudsDay {
+    background-image: linear-gradient(to right top, #63747c, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.brokenCloudsNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.overcastCloudsDay {
+    background-image: linear-gradient(to right top, #63747c, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.overcastCloudsNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+body.rainShowerDay {
+    background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+body.rainShowerNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+body.rainDay {
+    background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+body.rainNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+body.thunderstormDay {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+body.thunderstormNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+body.snowDay {
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+body.snowNight {
+    background-image: linear-gradient(to right top, #000000, #71858e, #7f96a0, #8da8b2, #9bbac5);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+body.atmosphere {
+    background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;    
+}

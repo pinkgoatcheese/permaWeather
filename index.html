@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Permaweather</title>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+	<script src="assets/weather.js"></script>
+	<script src="https://unpkg.com/arweave/bundles/web.bundle.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+</head>
+
+
+
+
+
+	<!-- The content of your page would go here. -->
+
+<div class="flexContainer">
+	<div class="header">
+		<a href="#default" class="logo">PermaWeather</a>
+		<div class="header-right">
+			<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+				<fieldset>
+				  <h2>Json File</h2>
+				   <input type="file" id="inputWalletFile">
+				   <input type="button" id="btnLoad" value="Load" onclick="loadWalletFile()";>
+				</fieldset>
+			  </form>
+		</div>
+	</div>
+	<div class="first-row-container">
+		<div class="locale">
+			<div class="col-2" id="location"></div><p></p><div class="col-2" id="description"></div>
+		</div>
+		<div class="search">
+			<form id="userInput">
+				<p style=text-align:center;> Enter Your Zip Code or City: <br></p>
+				<input type="text" placeholder="Example: Miami,US or 75201" id="inputCity" name="inputCity" size="21">
+				<br>
+				<input type="button" size="75" id="getWeather" value="Get Weather" onclick="getWeather()";>
+			  </form>
+		</div>
+		<div class="temperature">
+			<div class="col-2" id="temp"></div>
+			<p></p>
+			<div class="col-2" id="celcius"></div>
+		</div>
+	</div>
+	<div class="spacer-container" id="weatherIcon"></div>
+	<div class="wind-container">
+		<div class="col-2" id="windSpeed"></div>
+		<div class="col-2" id="windGust"></div>
+	</div>
+	<div class="save-button-container">
+		<input type="file" value="Save Data"></button>
+		<input type="button" id="saveToArwave" value="Save Data"></button>
+	</div>
+</div>
+
+	</body>
+
+</html>
