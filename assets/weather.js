@@ -1,4 +1,4 @@
-const instance = Arweave.init;
+const instance = Arweave.init();
 function loadWalletFile() {
   
   var inputWalletFile, walletFile, readWallet;
@@ -10,9 +10,8 @@ function loadWalletFile() {
   else {
     walletFile = inputWalletFile.files[0];
     readWallet = new FileReader();
-    readWallet.onload = createJwk();
+    readWallet.onload = createJwk;
     readWallet.readAsText(walletFile);
-    console.log(readWallet);
   }
 }
   function createJwk(readWallet) {
@@ -27,9 +26,9 @@ function loadWalletFile() {
      // transaction.addTag('Content-Type', 'text/html');
      // transaction.addTag('key2', 'value2');
 
-    arweave.transactions.sign(transaction, jwk);
+     instance.transactions.sign(transaction, jwk);
 
-    const response = arweave.transactions.post(transaction);
+    const response = instance.transactions.post(transaction);
 
 console.log(response.status);
 };
