@@ -34,26 +34,7 @@ console.log(response.status);
 };
   }
 
-function loadWallet() {
-  var input, file, fr;
-  input = document.getElementById("walletFile");
-  console.log(input)
-}
-/*
-let jwk = json.parse(selectedFile);
-const arweave = Arweave.init();
-const selectedFile = document.getElementById('input');
-let jwk = json.parse(selectedFile);
-let transactionA = arweave.createTransaction({
-  data: ''
-}, jwk);
-
-
-  document.getElementById('get_file').onclick = function () {
-    document.getElementById('my_file').click();
-  }
-  */
- function getWeather() {
+  function getWeather() {
   let city = document.getElementById("inputCity").value;
   let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=019700cd96eeb0fe38a84fff3686e27f";
   fetch(apiUrl)
