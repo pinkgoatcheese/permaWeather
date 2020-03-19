@@ -1,7 +1,6 @@
-import Arweave from 'arweave/web';
-var instance = Arweave.init;
-
+const instance = Arweave.init;
 function loadWalletFile() {
+  
   var inputWalletFile, walletFile, readWallet;
   inputWalletFile = document.getElementById('inputWalletFile');
   if (typeof window.FileReader !== 'function') {
@@ -16,17 +15,11 @@ function loadWalletFile() {
     console.log(readWallet);
   }
 }
-  function createJwk() {
-    console.log(readWallet);
+  function createJwk(readWallet) {
     let lines = readWallet.target.result;
     var jwk = JSON.parse(lines); 
     console.log(jwk);
     document.getElementById('saveToArwave').onclick = function saveToArweave() {
-      const instance = Arweave.init({
-        host: 'arweave.net',
-        port: 443,
-        protocol: 'https'
-      });
       let transaction = instance.createTransaction({
         data: '<html><head><meta charset="UTF-8"><title>Hello world!</title></head><body></body></html>'
     }, jwk);
@@ -61,7 +54,7 @@ let transactionA = arweave.createTransaction({
     document.getElementById('my_file').click();
   }
   */
-function getWeather() {
+ function getWeather() {
   let city = document.getElementById("inputCity").value;
   let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=019700cd96eeb0fe38a84fff3686e27f";
   fetch(apiUrl)
