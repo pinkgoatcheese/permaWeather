@@ -1,4 +1,10 @@
-const instance = Arweave.init();
+const arweave = Arweave.init({
+    host: 'arweave.net',// Hostname or IP address for a Arweave host
+    port: 443,          // Port
+    protocol: 'https',  // Network protocol http or https
+    timeout: 20000,     // Network request timeouts in milliseconds
+    logging: false,     // Enable network request logging
+});
 function loadWalletFile() {
   
   var inputWalletFile, walletFile, readWallet;
@@ -18,20 +24,20 @@ function loadWalletFile() {
     let lines = readWallet.target.result;
     var jwk = JSON.parse(lines); 
     console.log(jwk);
+ 
     document.getElementById('saveToArwave').onclick = function saveToArweave() {
-      let transaction = instance.createTransaction({
-        data: '<html><head><meta charset="UTF-8"><title>Hello world!</title></head><body></body></html>'
+      var data = document.getElementById('theDataToSave');
+      console.log(typeof data);
+      stringData = toString(data); 
+      console.log(stringData);
+      let transactionA = arweave.createTransaction({
+        data: stringData
     }, jwk);
-      console.log(transaction); 
-     // transaction.addTag('Content-Type', 'text/html');
-     // transaction.addTag('key2', 'value2');
-
-     instance.transactions.sign(transaction, jwk);
-
-    const response = instance.transactions.post(transaction);
-
-console.log(response.status);
-};
+    console.log(transactionA);
+    arweave.transactions.sign(transactionA, jwk);
+    const response = arweave.transactions.post(transactionA);
+    console.log(response.status);
+    };
   }
 
   function getWeather() {
