@@ -19,34 +19,71 @@
 
 
 
-	<!-- The content of your page would go here. -->
-<body>
-<div class="flexContainer">
-	<div class="header">
-		<a href="#default" class="logo">PermaWeather</a>
-		<div class="header-right">
+<!-- The content of your page would go here. -->
 
+<body>
+	<div class="flexContainer">
+		<div class="header">
+			<a href="#default" class="logo">PermaWeather</a>
+			<!-- Modal content -->
+			<div class="header-right">
+				<p id="dropzone">Drop Keyfile to Login..</p>
+				<input type="file" id="userInputWalletFile" onchange="loginToArweave(this.files)" style="display:none">
+			</div>
+		</div>
+		<!-- 
 			<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
 				<fieldset>
 				   <input type="file" id="userInputWalletFile" ; > <--- Select Your Wallet</file>
 				   <input type="button" id="btnLoad" value="Load" ; > Login Now! </button>
 				</fieldset>
 			  </form>
+			  -->
+<script>
+	    // Hide Wallet Input onclick
+		window.onclick = function (event) {
+        if (event.target == "header-right") {
+            modal.style.display = "none";
+        }
+    }
 
-		</div>
+    // Prevent Default Behaviour on dragover
+    window.addEventListener("dragover", function (event) {
+        if (event.target == "header-right") {
+            e = e || event;
+            e.preventDefault();
+        }
+        }, false);
+    // Prevent Default Behaviour on drop
+    window.addEventListener("drop", function (event) {
+        if (event.target == "header-right") {
+			var inputWalletFile = document.getElementById('userInputWalletFile');
+		    var walletFile = inputWalletFile.files[0];
+    		console.log(walletFile);
+    		const readWallet = new FileReader();
+    		readWallet.readAsText(walletFile);
+    		let lines = readWallet.target.result;
+    		jwk = JSON.parse(lines);
+			console.log(jwk);
+			event.preventDefault();
+        	}
+        }, false);
+</script>
 	</div>
 	<div class="first-row-container">
 		<div class="locale">
-			<div class="col-2" id="location"></div><p></p>
+			<div class="col-2" id="location"></div>
+			<p></p>
 			<div class="col-2" id="description"></div>
 		</div>
 		<div class="search">
 			<form id="userInput">
 				<p style=text-align:center;> Enter Your Zip Code or City: <br></p>
-				<input type="text" placeholder="Example: Miami,US or 75201" id="inputCity" name="inputCityName" size="21">
+				<input type="text" placeholder="Example: Miami,US or 75201" id="inputCity" name="inputCityName"
+					size="21">
 				<br>
-				<input type="button" size="75" id="getWeather" value="Get Weather" onclick='getWeatherJSON()';>
-			  </form>
+				<input type="button" size="75" id="getWeather" value="Get Weather" onclick='getWeatherJSON()' ;>
+			</form>
 		</div>
 		<div class="temperature">
 			<div class="col-2" id="temp"></div>
@@ -60,29 +97,29 @@
 		<div class="col-2" id="windGust"></div>
 	</div>
 	<div class="save-button-container">
-		<input type="button" id="saveToArwaveButton" value="Save Data" >Save to Blockchain</button>
+		<input type="button" id="saveToArwaveButton" value="Save Data">Save to Blockchain</button>
 	</div>
-</div>
-<script src="assets/arweave.js"></script>
-<script src="assets/weather.js"></script>
-<script>
-	let arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https',
-    timeout: 20000,
-    logging: false,
-});
-	var data = {};
-	let jwk = {};
-	let currentAddress = {};
-	var city = {};
-	var saveCity = {};
-	let saveWindSpeed = {};
-	let saveTempF = {};
-	let saveTempC = {};
-	var saveTime = {};
-</script>
-	</body>
+	</div>
+	<script src="assets/arweave.js"></script>
+	<script src="assets/weather.js"></script>
+	<script>
+		let arweave = Arweave.init({
+			host: 'arweave.net',
+			port: 443,
+			protocol: 'https',
+			timeout: 20000,
+			logging: false,
+		});
+		var data = {};
+		let jwk = {};
+		let currentAddress = {};
+		var city = {};
+		var saveCity = {};
+		let saveWindSpeed = {};
+		let saveTempF = {};
+		let saveTempC = {};
+		var saveTime = {};
+	</script>
+</body>
 
 </html>

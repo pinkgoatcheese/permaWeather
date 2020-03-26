@@ -1,4 +1,5 @@
 "use strict";
+/*
 document.getElementById('btnLoad').onclick = function loadWalletFile() {
     var inputWalletFile = document.getElementById('userInputWalletFile');
     var walletFile = inputWalletFile.files[0];
@@ -9,15 +10,25 @@ document.getElementById('btnLoad').onclick = function loadWalletFile() {
     readWallet.readAsText(walletFile);
     //    document.getElementById('file').innerText = reader.result;
 }
-
+*/
 
     
-function loginToArweave(readWallet) 
+function loginToArweave() 
 {
 
-    let lines = readWallet.target.result;
-    jwk = JSON.parse(lines);
-    console.log(jwk);
+    window.addEventListener("drop", function (event) {
+        if (event.target == "header-right") {
+			var inputWalletFile = document.getElementById('userInputWalletFile');
+		    var walletFile = inputWalletFile.files[0];
+    		console.log(walletFile);
+    		const readWallet = new FileReader();
+    		readWallet.readAsText(walletFile);
+    		let lines = readWallet.target.result;
+    		jwk = JSON.parse(lines);
+			console.log(jwk);
+			event.preventDefault();
+        	}
+        }, false);
 
     //  console.log(typeof data);
     //  stringData = toString(data); 
