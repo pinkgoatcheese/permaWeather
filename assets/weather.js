@@ -1,5 +1,7 @@
+"use strict";
+
 function getWeatherJSON() {
-  let city = document.getElementById("inputCity").value;
+  city = document.getElementById("inputCity").value;
   let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=019700cd96eeb0fe38a84fff3686e27f";
   fetch(apiUrl)
     .then(function (resp) { return resp.json() }) // Convert data to json
@@ -14,10 +16,15 @@ function getWeatherJSON() {
 function displayWeather(d) {
   let celcius = Math.round(parseFloat(d.main.temp) - 273.15);
   let fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
-  let description = d.weather[0].description;
   let icon = d.weather[0].icon;
   let windSpeedContent = "Windspeed: ";
+  saveCity = 'Weather data for ' + city;
+  saveWindSpeed = windSpeedContent + d.wind.speed + " m/s";
+  saveTempF = 'Temp: ' + fahrenheit + '&deg;F';
+  saveTempC = 'Temp: ' + celcius + '&deg;C';
+  saveTime = 'Unix Timestamp: ' + d.dt;
 
+  
   document.getElementById('description').innerHTML = d.weather[0].main;
   document.getElementById('celcius').innerHTML = celcius + '&deg;C';
   document.getElementById('temp').innerHTML = fahrenheit + '&deg;F';
@@ -26,7 +33,7 @@ function displayWeather(d) {
 
 
   if (icon == '01d') {
-    document.body.className = 'clearDat';
+    document.body.className = 'clearDay';
     document.getElementById('weatherIcon').style.backgroundImage = "url('assets/01d.png')";
     document.getElementById('weatherIcon').style.backgroundRepeat = "no-repeat";
     document.getElementById('weatherIcon').style.backgroundPosition = "center";
@@ -122,47 +129,3 @@ function displayWeather(d) {
     document.getElementById('weatherIcon').style.backgroundPosition = "center";
   }
 }
-
-function loadWalletFile() {
-  
-  var inputWalletFile, walletFile, readWallet;
-  inputWalletFile = document.getElementById('inputWalletFile');
-  if (typeof window.FileReader !== 'function') {
-    alert("The file API isn't supported on this browser yet.");
-    return;
-    } 
-  else {
-    walletFile = inputWalletFile.files[0];
-    readWallet = new FileReader();
-    readWallet.onload = createJwk;
-    readWallet.readAsText(walletFile);
-  }
-}
-  function createJwk(readWallet) {
-    const arweave = Arweave.init({
-      host: 'arweave.net',// Hostname or IP address for a Arweave host
-      port: 443,          // Port
-      protocol: 'https',  // Network protocol http or https
-      timeout: 20000,     // Network request timeouts in milliseconds
-      logging: false,     // Enable network request logging
-  });
-    let lines = readWallet.target.result;
-    var jwk = JSON.parse(lines); 
-    console.log(jwk);
- 
-    document.getElementById('saveToArwave').onclick = function saveToArweave() {
-      var data = document.getElementById('theDataToSave');
-      console.log(typeof data);
-      stringData = toString(data); 
-      console.log(stringData);
-      let transactionA = arweave.createTransaction({
-        data: stringData
-    }, jwk);
-    console.log(transactionA);
-    arweave.transactions.sign(transactionA, jwk);
-    const response = arweave.transactions.post(transactionA);
-    console.log(response.status);
-    };
-  }
-
-
